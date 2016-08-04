@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>My Chat application</title>
+	<style type="text/css">
+		.chatBox{
+			width : 40%;
+			border: 1px solid red ;
+			height : 500px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+<body ng-controller="chatController">
+	<h1>Welcome to hackerghost chat application</h1>
+
+	<form method="POST" action="/" id="identity">
+		<label>Enter Your Username<input type="text" name="username"></label>
+	</form>
+
+	<div class="chatBox">
+		<div class="message">
+			<h3 ng-repeat="message in messages track by $index">
+				{{ message }}
+			</h3>
+		</div>
+
+		<div class="sendMessage">
+			<form ng-submit="addMessage()" id="messageSubmit" method="POST">
+				<input size="35" type="text" ng-model="inputMessage" name="message" placeholder="Type in your message">
+				<input type="submit" name="submit">
+			</form>
+		</div>		
+	</div>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="myScript.js"></script>
+</body>
+</html>
